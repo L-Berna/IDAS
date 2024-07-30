@@ -1,0 +1,98 @@
+[
+    {
+        "llm_name": "claude-3-haiku",
+        "average_response_time": 1.2921728849411012
+    },
+    {
+        "llm_name": "claude-3-sonnet",
+        "average_response_time": 2.5261340856552126
+    },
+    {
+        "llm_name": "claude-3-opus",
+        "average_response_time": 6.5774846315383915
+    },
+    {
+        "llm_name": "claude-3-5-sonnet",
+        "average_response_time": 2.4763208627700806
+    },
+    {
+        "llm_name": "mistral-7b",
+        "average_response_time": 1.4926958084106445
+    },
+    {
+        "llm_name": "mixtral-8x7b",
+        "average_response_time": 1.2148219108581544
+    },
+    {
+        "llm_name": "mixtral-8x22b",
+        "average_response_time": 1.7371031999588014
+    },
+    {
+        "llm_name": "mistral-large-2407",
+        "average_response_time": 1.868176317214966
+    },
+    {
+        "llm_name": "mistral-nemo-2407",
+        "average_response_time": 0.9786676406860352
+    },
+    {
+        "llm_name": "llama2-7b",
+        "average_response_time": 2.80065336227417
+    },
+    {
+        "llm_name": "llama2-13b",
+        "average_response_time": 3.2434974193572996
+    },
+    {
+        "llm_name": "llama2-70b",
+        "average_response_time": 11.621405267715454
+    },
+    {
+        "llm_name": "llama3.1-8b",
+        "average_response_time": 3.392477798461914
+    },
+    {
+        "llm_name": "llama3.1-70b",
+        "average_response_time": 3.1406803369522094
+    },
+    {
+        "llm_name": "llama3.1-405b",
+        "average_response_time": 4.241796231269836
+    },
+    {
+        "llm_name": "Qwen2-72B",
+        "average_response_time": 2.8799810886383055
+    },
+    {
+        "llm_name": "gemma-7b",
+        "average_response_time": 3.414558744430542
+    },
+    {
+        "llm_name": "gemma-2b",
+        "average_response_time": 2.687319827079773
+    },
+    {
+        "llm_name": "gpt-3.5-turbo",
+        "average_response_time": 1.0897168397903443
+    },
+    {
+        "llm_name": "gpt-4o-mini",
+        "average_response_time": 1.1606761693954468
+    },
+    {
+        "llm_name": "gpt-4-turbo",
+        "average_response_time": 3.0178242444992067
+    },
+    {
+        "llm_name": "gpt-4o",
+        "average_response_time": 1.8053543329238892
+    },
+    {
+        "llm_name": "llama3-8b",
+        "average_response_time": 4.647712993621826
+    },
+    {
+        "llm_name": "llama3-70b",
+        "average_response_time": 11.091215968132019
+    }
+]
