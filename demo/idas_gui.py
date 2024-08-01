@@ -7,6 +7,8 @@ import sys
 import re
 import asyncio
 import threading
+import configparser
+import argparse
 
 from openai import OpenAI
 import pyaudio
@@ -27,8 +29,7 @@ from elevenlabs.client import ElevenLabs
 from elevenlabs import stream
 import logging
 
-from rag_utils import (get_session_history, contextualize_q_system_prompt,
-                       system_prompt)
+from rag_utils import get_session_history, contextualize_q_system_prompt
 
 logging.getLogger().setLevel(logging.ERROR) # hide warning log
 os_name = platform.system()  # get the name of the OS
@@ -37,7 +38,8 @@ init(autoreset=True) # Initialize colorama
 # Audio output streaming needs mpv in Windows
 # https://mpv.io/installation/
 if os_name == "Windows":
-    os.environ['PATH'] += os.pathsep + 'mpv/'
+    parent_directory = os.path.abspath(os.path.join(os.getcwd(), os.pardir))
+    os.environ['PATH'] += os.pathsep + parent_directory + '/mpv/'
 
 # Global Variables
 event_loop = None   # store the event loop
@@ -55,23 +57,25 @@ chunk_size = 1024
 audio_format = pyaudio.paInt16
 channels = 1
 
-# Embedding model
-embedding_dimensions = 3072
+# Set up argument parser
+parser = argparse.ArgumentParser(description='Load configuration for the application.')
+parser.add_argument('--config', type=str, required=True, help='Path to the configuration file')
 
-# Vehicle name
-vehicle_name = "kia_sorento"
+# Parse the arguments
+args = parser.parse_args()
 
-# Model to use
-# gpt-3.5-turbo, gpt-4-turbo, gpt-4o, gpt-4o-mini
-# claude-3-haiku-20240307, claude-3-sonnet-20240229
-# claude-3-opus-20240229, claude-3-5-sonnet-20240620
-# open-mistral-7b, open-mixtral-8x7b, open-mixtral-8x22b
-# mistral-large-2407, open-mistral-nemo-2407
-# llama-7b-chat, llama-13b-chat, llama-70b-chat
-# llama3-8b, llama3-70b, llama3.1-8b
-# llama3.1-70b, llama3.1-405b
-# Qwen2-72B, gemma-7b, gemma-2b
-llm_name = "gpt-4o"
+# Create a ConfigParser object
+config = configparser.ConfigParser()
+
+# Read the configuration file specified by the command-line argument
+config.read(args.config)
+
+# Access the values from the config file
+vehicle_name = config.get('DEFAULT', 'vehicle_name')
+embedding_dimensions = config.getint('DEFAULT', 'embedding_dimensions')
+llm_name = config.get('DEFAULT', 'llm_name')
+system_prompt = config.get('DEFAULT', 'system_prompt')
+vectordb_directory = config.get('DEFAULT', 'vectordb_directory')
 
 # Get the proper LLM API key 
 if "gpt" in llm_name:
@@ -118,8 +122,6 @@ embedding_model = OpenAIEmbeddings(model="text-embedding-3-large",
                                    dimensions=embedding_dimensions)
 
 # Vector dataset
-vectordb_directory = os.path.join(os.getcwd(),
-                                  f'vector_database_{vehicle_name}_{embedding_dimensions}')
 if not os.path.exists(vectordb_directory):
     print(Fore.RED + "No vector database found :(")
     print(Fore.RED + vectordb_directory)
@@ -251,7 +253,7 @@ def reset_button():
     state = "waiting"        
     btn_listening["text"] = "Start listening"
     btn_listening.config(bg="green", fg="black")
-    write_text("\n\n", "")
+    write_text("\n", "")
 
 # Function for the big button
 def toggle_state():
