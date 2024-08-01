@@ -76,6 +76,7 @@ embedding_dimensions = config.getint('DEFAULT', 'embedding_dimensions')
 llm_name = config.get('DEFAULT', 'llm_name')
 system_prompt = config.get('DEFAULT', 'system_prompt')
 vectordb_directory = config.get('DEFAULT', 'vectordb_directory')
+voice_name = config.get('DEFAULT', 'voice_name')
 
 # Get the proper LLM API key 
 if "gpt" in llm_name:
@@ -231,7 +232,7 @@ async def process_audio():
         # Text response to audio
         audio_stream = elabs_client.generate(
             text=text_stream(response_text),
-            voice="IDAS_1",
+            voice=voice_name,
             model="eleven_multilingual_v2",
             stream=True
         )
