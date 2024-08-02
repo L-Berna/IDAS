@@ -282,7 +282,7 @@ def toggle_state():
     elif state == "listening":
         # Change text to processing
         btn_listening["text"] = "Processing ..."
-        btn_listening.config(bg="yellow", fg="black")  # Green background, black text
+        btn_listening.config(bg="#a3a300", fg="black")  # Green background, black text
         #btn_listening.config(state=tk.DISABLED)  # Disable the button
         state = "processing"
 
@@ -367,6 +367,7 @@ def start_async_loop(loop):
 # Create the main window
 root = tk.Tk()
 root.title("Intelligent Driving Assistance System")
+root.configure(bg="#2c2f35")
 
 # Set the protocol for handling the window close event
 root.protocol("WM_DELETE_WINDOW", on_closing)
@@ -384,15 +385,15 @@ button_frame.pack(pady=50)
 
 # Create the "New Conversation" button
 btn_new_conversation = tk.Button(button_frame, text="New\nChat", 
-                                 font=("Arial", 32), 
+                                 font=("Verdana", 32), 
                                  command=new_session, 
-                                 height=8, width=6, bg="cyan", fg="black")
+                                 height=8, width=6, bg="#406ce5", fg="black")
 btn_new_conversation.pack(side=tk.LEFT)
 
 # Create the "Start listening" button
 btn_listening = tk.Button(button_frame, text="Start listening",
-                          font=("Arial", 64), command=toggle_state,
-                          height=4, width=20, bg="green", fg="black")
+                          font=("Verdana", 64), command=toggle_state,
+                          height=4, width=20, bg="#3f704d", fg="black")
 btn_listening.pack(side=tk.LEFT, padx=20)
 
 # Create a frame to hold the text box and scrollbar
@@ -400,7 +401,7 @@ text_frame = tk.Frame(root)
 text_frame.pack(pady=20)
 
 # Create a multi-line text box with around 10 lines
-text_box = tk.Text(text_frame, font=("Arial", 16), height=10, width=80, wrap="word")
+text_box = tk.Text(text_frame, font=("Verdana", 16), height=10, width=80, wrap="word")
 text_box.pack(side=tk.LEFT)
 
 # Create a vertical scrollbar linked to the text box
