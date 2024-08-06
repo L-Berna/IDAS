@@ -33,6 +33,9 @@ You will need an API key in order to use the LLM.
 ![alt text](figures/models_response_times.png)
 
 
+## Video demo
+https://youtu.be/Uhl-Y5lEcnY?si=HSiYkt0PrYObZ4qE
+
 ## Contact information
 **Main authors**
 - Luis Bernardo Hernandez
